@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.scss";
 import Navbar from "./components/Navbar/Navbar";
 import ParticlesHomepage from "./components/particles/ParticlesHomepage";
+import ThreejsComponent from "./components/threejs/ThreejsComponent";
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
         <Navbar />
         <div className="particleContainer">
           <img className="hero" src="./hero.png"></img>
-          <ParticlesHomepage />
+          <ThreejsComponent />
         </div>
       </section>
       <section id="Services">Parallax</section>
