@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.scss";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import ParticlesHomepage from "./components/particles/ParticlesHomepage";
 import ThreejsComponent from "./components/threejs/ThreejsComponent";
 
@@ -10,7 +10,6 @@ function App() {
       <section id="Homepage">
         <Navbar />
         <div className="particleContainer">
-          <img className="hero" src="./hero.png"></img>
           <ThreejsComponent />
         </div>
       </section>
