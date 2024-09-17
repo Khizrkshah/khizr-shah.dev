@@ -34,9 +34,8 @@ function ThreejsComponent() {
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0xffffff, 0);
-    // document.body.appendChild( renderer.domElement );
-    // use ref as a mount point of the Three.js scene instead of the document.body
 
+    //Resize window handler
     window.addEventListener("resize", onWindowResize);
 
     function onWindowResize() {
@@ -46,21 +45,13 @@ function ThreejsComponent() {
       bloomComposer.setSize(window.innerWidth, window.innerHeight);
     }
 
+    //Camera controls.
     const controls = new OrbitControls(camera, renderer.domElement);
     //controls.autoRotate = true;
     controls.update();
     controls.enabled = false;
 
-    /*
-    var boxGeometry = new THREE.BoxGeometry(3, 3, 3);
-    var boxMaterial = new THREE.MeshLambertMaterial({
-      color: 0xffdc91,
-      wireframe: true,
-    });
-    var cube = new THREE.Mesh(boxGeometry, boxMaterial);
-    scene.add(cube);
-    */
-
+    //Settings for Sphere object at the center of the Visualiser.
     const color = new THREE.Color();
     const hue = THREE.MathUtils.lerp(1, 0.9, 1); // Calculate hue
     color.setHSL(hue, 1, 0.5);
@@ -72,11 +63,8 @@ function ThreejsComponent() {
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
 
+    //uniforms for the visualiser object.
     const uniforms = {
-      /*u_resolution: {
-        type: "v2",
-        value: new THREE.Vector2(window.innerWidth, window.innerHeight),
-      },*/
       u_time: { type: "f", value: 0.0 },
       u_frequency: { type: "f", value: 0.0 },
       u_red: { type: "f", value: 0.9 },
@@ -84,6 +72,7 @@ function ThreejsComponent() {
       u_blue: { type: "f", value: 1.0 },
     };
 
+    //Color and Bloom Controls for the Visualiser object
     const params = {
       red: 1.0,
       green: 1.0,
@@ -93,6 +82,7 @@ function ThreejsComponent() {
       radius: 0.9,
     };
 
+    //Settings for Bloom on Visualiser object.
     renderer.outputColorSpace = THREE.SRGBColorSpace;
 
     const renderScene = new RenderPass(scene, camera);
@@ -111,6 +101,7 @@ function ThreejsComponent() {
     const outputPass = new OutputPass();
     bloomComposer.addPass(outputPass);
 
+    //VertexShader and FragmentShader settings for visualiser object.
     const vShader = `
       uniform float u_time;
 
@@ -233,12 +224,14 @@ function ThreejsComponent() {
       fragmentShader: fShader,
     });
 
+    //Settings for Visualiser mesh object.
     const geo = new THREE.IcosahedronGeometry(3, 30);
     const mesh = new THREE.Mesh(geo, mat);
     scene.add(mesh);
     mesh.material.wireframe = true;
     mesh.castShadow = true;
 
+    //Settings for Audio playback.
     const listener = new THREE.AudioListener();
     camera.add(listener);
 
@@ -253,6 +246,7 @@ function ThreejsComponent() {
 
     const rayCaster = new THREE.Raycaster();
 
+    //Used to make sure the audio only plays when the visualiser object is clicked on.
     function onMouseClick(event) {
       const coords = new THREE.Vector2(
         (event.clientX / renderer.domElement.clientWidth) * 2 - 1,
@@ -295,6 +289,7 @@ function ThreejsComponent() {
       }
     }
 
+    //AudioLoader Loading the music file.
     audioLoader.load("./music.mp3", function (buffer) {
       sound.setBuffer(buffer);
       sound.setVolume(0); // Start with volume at 0
@@ -303,7 +298,22 @@ function ThreejsComponent() {
     });
     const analyser = new THREE.AudioAnalyser(sound, 32);
 
+    //AmbientLight settings.
+    var ambientLight = new THREE.AmbientLight(0xffffff, 2.5);
+    ambientLight.castShadow = true;
+    scene.add(ambientLight);
+
+    //Spotlight settings/
+    var spotLight = new THREE.SpotLight(0xffffff, 5);
+    spotLight.castShadow = true;
+    spotLight.position.set(0, 0, 4);
+    scene.add(spotLight);
+
+    //GUI helper and Axes helper to see orientation.
     /*
+    const axesHelper = new THREE.AxesHelper(3);
+    scene.add(axesHelper);
+    
     const gui = new GUI();
 
     const colorsFolder = gui.addFolder("Colors");
@@ -329,20 +339,10 @@ function ThreejsComponent() {
     });
     */
 
-    var ambientLight = new THREE.AmbientLight(0xffffff, 2.5);
-    ambientLight.castShadow = true;
-    scene.add(ambientLight);
-
-    var spotLight = new THREE.SpotLight(0xffffff, 5);
-    spotLight.castShadow = true;
-    spotLight.position.set(0, 0, 4);
-    scene.add(spotLight);
-
-    const axesHelper = new THREE.AxesHelper(3);
-    //scene.add(axesHelper);
-
     var time = 0;
     const clock = new THREE.Clock();
+
+    //animate function.
     var animate = function () {
       requestAnimationFrame(animate);
       time += (1 / 60) * 1000;
