@@ -19,6 +19,9 @@ a {
   text-decoration: none;
   color: inherit;
 }
+a:hover {
+  size: 40px;
+}
 
 section {
   height: 100vh;
@@ -32,11 +35,15 @@ section {
   justify-content: right;
   position: relative;
 }
-.hero {
-  height: 60%;
-  margin-top: 11%;
-}
+
 #tsparticles {
   height: 89.8%;
   margin-bottom: 100px;
+}
+.introduction {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 20px;
 }

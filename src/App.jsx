@@ -4,6 +4,7 @@ import Navbar from "./components/navbar/Navbar";
 import ParticlesHomepage from "./components/particles/ParticlesHomepage";
 import ThreejsComponent from "./components/threejs/ThreejsComponent";
 import Sidebar from "./components/sidebar/Sidebar";
+import Introduction from "./components/introduction/Introduction";
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
         <Sidebar />
         <div className="particleContainer">
           <ThreejsComponent />
+        </div>
+        <div className="introduction">
+          <Introduction />
         </div>
       </section>
       <section id="Services">Parallax</section>
