@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { GUI } from "dat.gui";
+//import { GUI } from "dat.gui";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
@@ -8,11 +8,11 @@ import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { Tween, Group } from "@tweenjs/tween.js";
 
 import { useEffect, useRef } from "react";
+import getStarfield from "./Starfield.jsx";
 
 function ThreejsComponent() {
-  /*const refContainer = useRef();*/
   useEffect(() => {
-    // === THREE.JS CODE START ===
+    //THREE.JS CODE START.
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(
       75,
@@ -47,7 +47,8 @@ function ThreejsComponent() {
 
     //Camera controls.
     const controls = new OrbitControls(camera, renderer.domElement);
-    //controls.autoRotate = true;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.6;
     controls.update();
     controls.enabled = false;
 
@@ -257,34 +258,38 @@ function ThreejsComponent() {
       const intersections = rayCaster.intersectObjects(scene.children, true);
       if (intersections.length > 0) {
         console.log(intersections);
-        if (sound.isPlaying == false) {
-          sound.play();
-          // Tween the volume up (from 0 to 0.06)
-          tweenUp
-            .to({ x: 0.06 }, 1000)
-            .onUpdate(function (object) {
-              if (isFinite(object.x)) {
-                sound.setVolume(object.x);
-              } else {
-                console.error("Non-finite value for volume:", object.x);
-              }
-            })
-            .start();
+        if (intersections[0].object.type == "Mesh") {
+          if (sound.isPlaying == false) {
+            sound.play();
+            // Tween the volume up (from 0 to 0.06)
+            tweenUp
+              .to({ x: 0.06 }, 1000)
+              .onUpdate(function (object) {
+                if (isFinite(object.x)) {
+                  sound.setVolume(object.x);
+                } else {
+                  console.error("Non-finite value for volume:", object.x);
+                }
+              })
+              .start();
+          } else {
+            // Tween the volume down (from 0.06 to 0)
+            tweenDown
+              .to({ x: 0 }, 1000)
+              .onUpdate(function (object) {
+                if (isFinite(object.x)) {
+                  sound.setVolume(object.x);
+                } else {
+                  console.error("Non-finite value for volume:", object.x);
+                }
+              })
+              .onComplete(function () {
+                sound.pause();
+              })
+              .start();
+          }
         } else {
-          // Tween the volume down (from 0.06 to 0)
-          tweenDown
-            .to({ x: 0 }, 1000)
-            .onUpdate(function (object) {
-              if (isFinite(object.x)) {
-                sound.setVolume(object.x);
-              } else {
-                console.error("Non-finite value for volume:", object.x);
-              }
-            })
-            .onComplete(function () {
-              sound.pause();
-            })
-            .start();
+          console.log("only star clicked");
         }
       }
     }
@@ -341,6 +346,9 @@ function ThreejsComponent() {
 
     var time = 0;
     const clock = new THREE.Clock();
+
+    const stars = getStarfield({ numStars: 200 });
+    scene.add(stars);
 
     //animate function.
     var animate = function () {
