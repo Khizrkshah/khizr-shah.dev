@@ -11,8 +11,9 @@ import {
 const Title = () => {
   return (
     <div className="infoContainer">
-      <div className="lineAnim">
+      <div>
         <motion.div
+          className="lineAnim"
           initial={{ width: 0 }}
           animate={{ width: "90%" }}
           transition={{ duration: 1.2, delay: 1.2, ease: "easeOut" }}
@@ -44,10 +45,21 @@ const Title = () => {
         </motion.div>
 
         <motion.div
-          className="socials"
+          className="infotext"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 3.5, duration: 0.6 }}
+        >
+          <p className="infotextsize">
+            Made with three.js, Click the Sphere for music made by me.
+          </p>
+        </motion.div>
+
+        <motion.div
+          className="socials"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 4, duration: 0.6 }}
         >
           <a
             href="https://www.linkedin.com/in/mian-khizr-shah-151054231/"
@@ -58,17 +70,6 @@ const Title = () => {
           <a href="https://github.com/Khizrkshah" className="github">
             <IoLogoGithub />
           </a>
-        </motion.div>
-
-        <motion.div
-          className="infotext"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 5, duration: 0.6 }}
-        >
-          <p className="infotextsize">
-            Made with three.js, Click on the Sphere to hear music made by me.
-          </p>
         </motion.div>
       </div>
     </div>

@@ -34,6 +34,7 @@ function ThreejsComponent() {
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0xffffff, 0);
+    renderer.setPixelRatio(window.devicePixelRatio - 0.5);
 
     //Resize window handler
     window.addEventListener("resize", onWindowResize);
@@ -80,7 +81,7 @@ function ThreejsComponent() {
       blue: 1.0,
       threshold: 0.256,
       strength: 0.23,
-      radius: 0.9,
+      radius: 0.5,
     };
 
     //Settings for Bloom on Visualiser object.
@@ -215,7 +216,7 @@ function ThreejsComponent() {
 
     void main(){
 
-     gl_FragColor = vec4(vec3(u_red,u_green,u_blue),1.0);
+     gl_FragColor = vec4(vec3(u_red,u_green,u_blue),0.3);
     
     }`;
 
@@ -223,14 +224,19 @@ function ThreejsComponent() {
       uniforms,
       vertexShader: vShader,
       fragmentShader: fShader,
+      transparent: true,
     });
 
     //Settings for Visualiser mesh object.
-    const geo = new THREE.IcosahedronGeometry(3, 30);
+    const geo = new THREE.IcosahedronGeometry(3, 60);
     const mesh = new THREE.Mesh(geo, mat);
     scene.add(mesh);
-    mesh.material.wireframe = true;
-    mesh.castShadow = true;
+    //mesh.material.wireframe = true;
+
+    //AmbientLight settings.
+    var ambientLight = new THREE.AmbientLight(0xffffff, 6);
+    ambientLight.castShadow = true;
+    scene.add(ambientLight);
 
     //Settings for Audio playback.
     const listener = new THREE.AudioListener();
@@ -303,17 +309,6 @@ function ThreejsComponent() {
     });
     const analyser = new THREE.AudioAnalyser(sound, 32);
 
-    //AmbientLight settings.
-    var ambientLight = new THREE.AmbientLight(0xffffff, 2.5);
-    ambientLight.castShadow = true;
-    scene.add(ambientLight);
-
-    //Spotlight settings/
-    var spotLight = new THREE.SpotLight(0xffffff, 5);
-    spotLight.castShadow = true;
-    spotLight.position.set(0, 0, 4);
-    scene.add(spotLight);
-
     //GUI helper and Axes helper to see orientation.
     /*
     const axesHelper = new THREE.AxesHelper(3);
@@ -344,7 +339,6 @@ function ThreejsComponent() {
     });
     */
 
-    var time = 0;
     const clock = new THREE.Clock();
 
     const stars = getStarfield({ numStars: 200 });
@@ -353,8 +347,7 @@ function ThreejsComponent() {
     //animate function.
     var animate = function () {
       requestAnimationFrame(animate);
-      time += (1 / 60) * 1000;
-      group.update(time);
+      group.update();
       uniforms.u_time.value = clock.getElapsedTime();
       uniforms.u_frequency.value = analyser.getAverageFrequency();
       controls.update();

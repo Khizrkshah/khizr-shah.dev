@@ -1,19 +1,39 @@
 .infoContainer {
-  width: 100%;
+  width: 90%;
+  text-align: center;
+}
+
+.lineAnim {
+  margin: auto;
+  width: 50%;
 }
 
 .linkedin {
   font-size: 30px;
+  color: rgb(179, 2, 134);
 }
+
 .linkedin:hover {
   font-size: 40px;
-  color: rgb(238, 0, 255);
+  color: rgb(219, 0, 164);
 }
 
 .github {
   font-size: 30px;
+  color: rgb(179, 2, 134);
 }
 .github:hover {
   font-size: 40px;
-  color: rgb(238, 0, 255);
+  color: rgb(219, 0, 164);
+}
+.name {
+  color: rgb(235, 234, 234);
+}
+
+.info {
+  color: rgb(195, 193, 193);
+}
+
+.infotext {
+  color: rgb(195, 193, 193);
 }

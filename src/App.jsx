@@ -18,8 +18,7 @@ function App() {
           <Introduction />
         </div>
       </section>
-      <section id="Services">Parallax</section>
-      <section>Services</section>
+      <section id="About">About</section>
       <section id="Projects">Parallax</section>
       <section>Project1</section>
       <section>Project2</section>
