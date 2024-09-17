@@ -251,11 +251,18 @@ function ThreejsComponent() {
     group.add(tweenUp);
     group.add(tweenDown);
 
-    audioLoader.load("./music.mp3", function (buffer) {
-      sound.setBuffer(buffer);
-      sound.setVolume(0); // Start with volume at 0
+    const rayCaster = new THREE.Raycaster();
 
-      window.addEventListener("click", function () {
+    function onMouseClick(event) {
+      const coords = new THREE.Vector2(
+        (event.clientX / renderer.domElement.clientWidth) * 2 - 1,
+        -((event.clientY / renderer.domElement.clientHeight) * 2 - 1)
+      );
+
+      rayCaster.setFromCamera(coords, camera);
+      const intersections = rayCaster.intersectObjects(scene.children, true);
+      if (intersections.length > 0) {
+        console.log(intersections);
         if (sound.isPlaying == false) {
           sound.play();
           // Tween the volume up (from 0 to 0.06)
@@ -285,7 +292,14 @@ function ThreejsComponent() {
             })
             .start();
         }
-      });
+      }
+    }
+
+    audioLoader.load("./music.mp3", function (buffer) {
+      sound.setBuffer(buffer);
+      sound.setVolume(0); // Start with volume at 0
+
+      window.addEventListener("click", onMouseClick);
     });
     const analyser = new THREE.AudioAnalyser(sound, 32);
 
