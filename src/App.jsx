@@ -3,12 +3,13 @@ import "./App.scss";
 import Navbar from "./components/navbar/Navbar";
 import ParticlesHomepage from "./components/particles/ParticlesHomepage";
 import ThreejsComponent from "./components/threejs/ThreejsComponent";
+import Sidebar from "./components/sidebar/Sidebar";
 
 function App() {
   return (
     <div>
       <section id="Homepage">
-        <Navbar />
+        <Sidebar />
         <div className="particleContainer">
           <ThreejsComponent />
         </div>

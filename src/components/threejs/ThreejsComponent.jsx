@@ -5,6 +5,7 @@ import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+import { Tween, Group } from "@tweenjs/tween.js";
 
 import { useEffect, useRef } from "react";
 
@@ -28,9 +29,11 @@ function ThreejsComponent() {
     var renderer = new THREE.WebGLRenderer({
       canvas,
       antialias: true,
+      alpha: true,
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0xffffff, 0);
     // document.body.appendChild( renderer.domElement );
     // use ref as a mount point of the Three.js scene instead of the document.body
 
@@ -46,6 +49,7 @@ function ThreejsComponent() {
     const controls = new OrbitControls(camera, renderer.domElement);
     //controls.autoRotate = true;
     controls.update();
+    controls.enabled = false;
 
     /*
     var boxGeometry = new THREE.BoxGeometry(3, 3, 3);
@@ -55,19 +59,18 @@ function ThreejsComponent() {
     });
     var cube = new THREE.Mesh(boxGeometry, boxMaterial);
     scene.add(cube);
+    */
 
     const color = new THREE.Color();
-    const hue = THREE.MathUtils.lerp(0.6, 0.5, 1); // Calculate hue
+    const hue = THREE.MathUtils.lerp(1, 0.9, 1); // Calculate hue
     color.setHSL(hue, 1, 0.5);
 
-    const geometry = new THREE.SphereGeometry(1, 25, 25);
+    const geometry = new THREE.SphereGeometry(2, 25, 25);
     const material = new THREE.MeshStandardMaterial({
       color: color,
     });
     const sphere = new THREE.Mesh(geometry, material);
     scene.add(sphere);
-
-    */
 
     const uniforms = {
       /*u_resolution: {
@@ -76,7 +79,7 @@ function ThreejsComponent() {
       },*/
       u_time: { type: "f", value: 0.0 },
       u_frequency: { type: "f", value: 0.0 },
-      u_red: { type: "f", value: 1.0 },
+      u_red: { type: "f", value: 0.9 },
       u_green: { type: "f", value: 0 },
       u_blue: { type: "f", value: 1.0 },
     };
@@ -85,8 +88,8 @@ function ThreejsComponent() {
       red: 1.0,
       green: 1.0,
       blue: 1.0,
-      threshold: 0.27,
-      strength: 0.3,
+      threshold: 0.256,
+      strength: 0.23,
       radius: 0.9,
     };
 
@@ -207,7 +210,7 @@ function ThreejsComponent() {
 
       void main(){
        float noise = 4.0 * pnoise(position + u_time, vec3(10.0));
-       float displacement = (u_frequency /30.0 ) * (noise / 10.0);
+       float displacement = ((u_frequency + 3.0)/30.0 ) * ((noise + 1.0) / 10.0);
        vec3 newPosition = position + normal * displacement;
        gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
       
@@ -230,7 +233,7 @@ function ThreejsComponent() {
       fragmentShader: fShader,
     });
 
-    const geo = new THREE.IcosahedronGeometry(3, 40);
+    const geo = new THREE.IcosahedronGeometry(3, 30);
     const mesh = new THREE.Mesh(geo, mat);
     scene.add(mesh);
     mesh.material.wireframe = true;
@@ -240,20 +243,50 @@ function ThreejsComponent() {
     camera.add(listener);
 
     const sound = new THREE.Audio(listener);
-
     const audioLoader = new THREE.AudioLoader();
+    const volume = { x: 0 };
+    const tweenUp = new Tween(volume);
+    const tweenDown = new Tween(volume);
+    const group = new Group();
+    group.add(tweenUp);
+    group.add(tweenDown);
+
     audioLoader.load("./music.mp3", function (buffer) {
       sound.setBuffer(buffer);
-      sound.setVolume(0.06);
+      sound.setVolume(0); // Start with volume at 0
+
       window.addEventListener("click", function () {
         if (sound.isPlaying == false) {
           sound.play();
+          // Tween the volume up (from 0 to 0.06)
+          tweenUp
+            .to({ x: 0.06 }, 1000)
+            .onUpdate(function (object) {
+              if (isFinite(object.x)) {
+                sound.setVolume(object.x);
+              } else {
+                console.error("Non-finite value for volume:", object.x);
+              }
+            })
+            .start();
         } else {
-          sound.pause();
+          // Tween the volume down (from 0.06 to 0)
+          tweenDown
+            .to({ x: 0 }, 1000)
+            .onUpdate(function (object) {
+              if (isFinite(object.x)) {
+                sound.setVolume(object.x);
+              } else {
+                console.error("Non-finite value for volume:", object.x);
+              }
+            })
+            .onComplete(function () {
+              sound.pause();
+            })
+            .start();
         }
       });
     });
-
     const analyser = new THREE.AudioAnalyser(sound, 32);
 
     /*
@@ -282,11 +315,11 @@ function ThreejsComponent() {
     });
     */
 
-    var ambientLight = new THREE.AmbientLight(0xffffff, 0);
+    var ambientLight = new THREE.AmbientLight(0xffffff, 2.5);
     ambientLight.castShadow = true;
     scene.add(ambientLight);
 
-    var spotLight = new THREE.SpotLight(0xffffff, 0);
+    var spotLight = new THREE.SpotLight(0xffffff, 5);
     spotLight.castShadow = true;
     spotLight.position.set(0, 0, 4);
     scene.add(spotLight);
@@ -294,14 +327,12 @@ function ThreejsComponent() {
     const axesHelper = new THREE.AxesHelper(3);
     //scene.add(axesHelper);
 
+    var time = 0;
     const clock = new THREE.Clock();
     var animate = function () {
       requestAnimationFrame(animate);
-      /*sphere.rotation.x += 0.01;
-      sphere.rotation.y += 0.01;
-      //sphere.position.y = Math.sin(window.performance.now() / 1000) / 2;
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;*/
+      time += (1 / 60) * 1000;
+      group.update(time);
       uniforms.u_time.value = clock.getElapsedTime();
       uniforms.u_frequency.value = analyser.getAverageFrequency();
       controls.update();

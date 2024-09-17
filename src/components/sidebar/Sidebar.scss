@@ -3,8 +3,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #453719;
-  color: #ffdc91;
+  background-color: #bf128e;
+  color: #000000;
+  z-index: 1;
 
   .bg {
     position: fixed;
@@ -12,7 +13,8 @@
     left: 0;
     bottom: 0;
     width: 400px;
-    background: #453719;
+    background: #ba0dbd;
+    z-index: 1;
 
     .links {
       position: absolute;
@@ -40,5 +42,6 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    z-index: 1;
   }
 }
