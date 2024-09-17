@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.scss";
-import Navbar from "./components/navbar/Navbar";
+import About from "./components/about/About";
 import ParticlesHomepage from "./components/particles/ParticlesHomepage";
 import ThreejsComponent from "./components/threejs/ThreejsComponent";
 import Sidebar from "./components/sidebar/Sidebar";
@@ -18,7 +18,9 @@ function App() {
           <Introduction />
         </div>
       </section>
-      <section id="About">About</section>
+      <section id="About">
+        <About />
+      </section>
       <section id="Projects">Parallax</section>
       <section>Project1</section>
       <section>Project2</section>

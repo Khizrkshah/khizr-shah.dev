@@ -23,18 +23,31 @@ const itemVariants = {
   },
 };
 
-const Links = () => {
+function handleCLick(setOpen, name) {
+  setOpen((prev) => !prev);
+  const element = document.getElementById(name);
+  if (element) {
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  } else {
+    console.warn(`Element with class name ${name} not found.`);
+  }
+}
+const Links = ({ setOpen }) => {
   const items = ["Homepage", "About", "Projects", "Contact"];
 
   return (
     <motion.div className="links" variants={variants}>
       {items.map((item) => (
         <motion.a
-          href={`#${item}`}
           key={item}
           variants={itemVariants}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => handleCLick(setOpen, item)}
         >
           {item}
         </motion.a>
