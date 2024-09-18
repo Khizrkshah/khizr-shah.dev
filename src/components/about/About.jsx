@@ -16,9 +16,8 @@ const About = () => {
         About me
       </motion.h1>
 
-      {/* Horizontal Line Animation */}
+      {/* Vertical Line Animation */}
       <motion.div
-        className="horizontalLine"
         initial={{ height: 0 }}
         whileInView={{ height: "70%" }}
         viewport={{ once: false }}

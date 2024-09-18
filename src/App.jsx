@@ -4,8 +4,8 @@ import About from "./components/about/About";
 import ThreejsComponent from "./components/threejs/ThreejsComponent";
 import Sidebar from "./components/sidebar/Sidebar";
 import Introduction from "./components/introduction/Introduction";
+import Projects from "./components/projects/Projects";
 
-console.log(import.meta.env.VITE_GITHUB_API_KEY);
 function App() {
   return (
     <div>
@@ -21,12 +21,9 @@ function App() {
       <section id="About">
         <About />
       </section>
-      <section id="Projects">Parallax</section>
-      <section>Project1</section>
-      <section>Project2</section>
-      <section>Project3</section>
-      <section>Project4</section>
-      <section>Project5</section>
+      <section id="Projects">
+        <Projects />
+      </section>
       <section id="Contact">Contact</section>
     </div>
   );
