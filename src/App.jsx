@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./App.scss";
 import About from "./components/about/About";
-import ParticlesHomepage from "./components/particles/ParticlesHomepage";
 import ThreejsComponent from "./components/threejs/ThreejsComponent";
 import Sidebar from "./components/sidebar/Sidebar";
 import Introduction from "./components/introduction/Introduction";
 
+console.log(import.meta.env.VITE_GITHUB_API_KEY);
 function App() {
   return (
     <div>
