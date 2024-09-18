@@ -16,6 +16,12 @@ const Footer = () => {
           <span>&copy; 2024</span> {/* Copyright information */}
         </div>
         <p>Give me a call: +36307525617</p> {/* Contact information */}
+        <a
+          href="https://www.flaticon.com/free-icons/portfolio"
+          title="portfolio icons"
+        >
+          Portfolio icons created by Freepik - Flaticon
+        </a>
       </div>
     </motion.div>
   );
