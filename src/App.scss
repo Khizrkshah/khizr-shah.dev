@@ -1,18 +1,27 @@
 html {
+  margin: 0;
+  padding: 0;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 * {
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
   font-family: "DM Sans", sans-serif;
 }
 
 body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
   background-color: #000000;
   color: #d7d7d7;
+  overflow-y: scroll;
+}
+
+p {
+  margin-bottom: 1em;
 }
 
 a {
@@ -24,23 +33,35 @@ a:hover {
 }
 
 section {
-  height: 100vh;
-  scroll-snap-align: center;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  scroll-snap-align: start;
   scroll-snap-stop: always;
+  position: inherit;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 .particleContainer {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 
 #tsparticles {
-  height: 89.8%;
-  margin-bottom: 100px;
+  height: 100%;
+  margin-bottom: 0;
 }
 .introduction {
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   position: absolute;
   bottom: 20px;
+}
+
+@mixin mobile {
+  @media (max-width: 599px) {
+    @content;
+  }
 }

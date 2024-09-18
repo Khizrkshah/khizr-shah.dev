@@ -23,7 +23,12 @@ const About = () => {
         whileInView={{ height: "70%" }}
         viewport={{ once: false }}
         transition={{ duration: 1, ease: "easeOut" }}
-        style={{ width: 1, border: 1, backgroundColor: "white", opacity: 0.5 }}
+        style={{
+          width: 1,
+          border: 1,
+          backgroundColor: "white",
+          opacity: 0.5,
+        }}
       />
 
       {/* About Content with Fade-in and Bounce-in Animation */}

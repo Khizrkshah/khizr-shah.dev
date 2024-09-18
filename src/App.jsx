@@ -10,13 +10,13 @@ function App() {
   return (
     <div>
       <section id="Homepage">
-        <Sidebar />
         <div className="particleContainer">
           <ThreejsComponent />
         </div>
         <div className="introduction">
           <Introduction />
         </div>
+        <Sidebar />
       </section>
       <section id="About">
         <About />

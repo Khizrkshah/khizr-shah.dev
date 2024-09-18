@@ -1,6 +1,13 @@
+@import "../../app.scss";
+
 .infoContainer {
   width: 90%;
   text-align: center;
+  @include mobile {
+    width: 90%;
+    text-align: center;
+    padding-bottom: 65px;
+  }
 }
 
 .lineAnim {

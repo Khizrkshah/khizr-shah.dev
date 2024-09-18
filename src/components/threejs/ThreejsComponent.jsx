@@ -305,7 +305,7 @@ function ThreejsComponent() {
       sound.setBuffer(buffer);
       sound.setVolume(0); // Start with volume at 0
 
-      window.addEventListener("click", onMouseClick);
+      canvas.addEventListener("click", onMouseClick);
     });
     const analyser = new THREE.AudioAnalyser(sound, 32);
 
