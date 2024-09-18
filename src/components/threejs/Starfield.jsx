@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
 // Function to generate a starfield with a given number of stars
-export default function getStarfield({ numStars = 500 } = {}) {
+export default function getStarfield({ numStars = 100 } = {}) {
   // Function to generate a random point on the surface of a sphere
   function randomSpherePoint() {
     // Random radius between 25 and 50 units
