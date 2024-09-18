@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import "./About.scss";
 
@@ -8,35 +7,35 @@ const About = () => {
       {/* About Heading */}
       <motion.h1
         className="aboutHeading"
-        initial={{ opacity: 0, y: -50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        initial={{ opacity: 0, y: -50 }} // Hidden and shifted up
+        whileInView={{ opacity: 1, y: 0 }} // Fade in and move into place
+        viewport={{ once: false }} // Animates each time it's in view
+        transition={{ duration: 0.6, ease: "easeOut" }} // Animation duration and easing
       >
         About me
       </motion.h1>
 
       {/* Vertical Line Animation */}
       <motion.div
-        initial={{ height: 0 }}
-        whileInView={{ height: "70%" }}
-        viewport={{ once: false }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        initial={{ height: 0 }} // Start with 0 height
+        whileInView={{ height: "70%" }} // Animate height to 70% when in view
+        viewport={{ once: false }} // Animates each time it's in view
+        transition={{ duration: 1, ease: "easeOut" }} // Smooth transition over 1 second
         style={{
-          width: 1,
+          width: 1, // Thin line
           border: 1,
-          backgroundColor: "white",
-          opacity: 0.5,
+          backgroundColor: "white", // White line color
+          opacity: 0.5, // Slight transparency
         }}
       />
 
       {/* About Content with Fade-in and Bounce-in Animation */}
       <motion.div
         className="aboutContent"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }}
+        initial={{ opacity: 0, y: 50 }} // Hidden and shifted down
+        whileInView={{ opacity: 1, y: 0 }} // Fade in and move into place
+        viewport={{ once: false }} // Animates each time it's in view
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 }} // Animation duration, easing, and delay
       >
         <p>
           Hi, I’m Khizr, a 28 year old developer originally from Pakistan, now

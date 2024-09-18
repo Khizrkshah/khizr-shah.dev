@@ -1,0 +1,117 @@
+@import "../../app.scss";
+
+.contactContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center items horizontally */
+  gap: 7rem; /* Add space between the SVG and form */
+  padding: 7rem;
+  width: 100vw;
+  @include mobile {
+    flex-direction: column; /* Stack items vertically on mobile */
+    padding: 2rem; /* Reduce padding for smaller screens */
+    gap: 2rem; /* Reduce gap between SVG and form */
+  }
+}
+
+.contactBox {
+  width: 100vw;
+  display: flex;
+
+  @include mobile {
+    width: 90vw; /* Reduce width to avoid overflow on mobile */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align the form */
+  }
+}
+
+.contactImage {
+  flex: 1; /* Allow the SVG to take up available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include mobile {
+    flex: none; /* Reset flex for smaller screens */
+    margin-bottom: 1.5rem; /* Add space below SVG on mobile */
+  }
+}
+
+.contactIcon {
+  fill: #ff4081; /* Accent color for the SVG */
+  width: 150px; /* Increase size of the SVG */
+  height: 150px; /* Increase size of the SVG */
+
+  @include mobile {
+    width: 100px; /* Reduce size for mobile */
+    height: 100px;
+  }
+}
+
+.contactMe {
+  background-color: #111; /* Dark background for the contact form */
+  border: 2px solid rgb(179, 2, 134); /* Pinkish purple border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+  padding: 2rem; /* Add padding around the content */
+  border-radius: 10px; /* Rounded corners */
+  max-width: 100%; /* Make the form wider */
+  width: 100%; /* Ensure it takes full available width */
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  text-align: center; /* Center text inside the form */
+
+  @include mobile {
+    padding: 1.5rem; /* Reduce padding on mobile */
+    width: 100%; /* Ensure full width on smaller screens */
+  }
+}
+
+.contactTitle {
+  padding-bottom: 5%;
+  font-size: 2rem;
+  color: #ff4081; /* Accent color for the title */
+
+  @include mobile {
+    font-size: 1.5rem; /* Reduce title size for mobile */
+  }
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contactInput,
+.contactTextarea {
+  padding: 1rem; /* Increase padding for a more spacious feel */
+  border: none;
+  border-radius: 5px;
+  background: #333; /* Dark background for input fields */
+  color: #f0f0f0; /* Light text color */
+  font-size: 1rem;
+  resize: none;
+
+  @include mobile {
+    font-size: 0.9rem; /* Slightly smaller text for mobile */
+  }
+}
+
+.contactButton {
+  padding: 1rem; /* Increase button padding */
+  border: none;
+  border-radius: 5px;
+  background: #ff4081; /* Accent color for the button */
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  @include mobile {
+    padding: 0.8rem; /* Reduce button padding for mobile */
+    font-size: 0.9rem; /* Smaller button text */
+  }
+}
+
+.contactButton:hover {
+  background: #e7376a; /* Darker shade on hover */
+}
