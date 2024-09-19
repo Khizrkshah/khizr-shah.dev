@@ -1,0 +1,27 @@
+name: Deploy REACT to AWS
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - name: Generate deployment package
+        run: zip -r deploy.zip . -x '*.git*'
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: portfolio-website-docker
+          environment_name: Portfolio-website-docker-env
+          version_label: ${{ github.sha }}
+          existing_bucket_name: elasticbeanstalk-eu-central-1-640168451641
+          region: eu-central-1
+          deployment_package: deploy.zip
