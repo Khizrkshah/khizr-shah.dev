@@ -11,6 +11,10 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
 
+      - name: Get current version
+        id: get_version
+        run: echo "::set-output name=version::$(date +'%Y.%m.%d.%H%M%S')"
+
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
 
@@ -19,9 +23,9 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: portfolio-website-docker
-          environment_name: Portfolio-website-docker-env
-          version_label: ${{ github.sha }}
+          application_name: react-docker-portfolio
+          environment_name: React-docker-portfolio-env
+          version_label: ${{ steps.get_version.outputs.version }}
           existing_bucket_name: elasticbeanstalk-eu-central-1-640168451641
           region: eu-central-1
           deployment_package: deploy.zip
