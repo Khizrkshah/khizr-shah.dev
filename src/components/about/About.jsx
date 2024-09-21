@@ -4,16 +4,28 @@ import "./About.scss";
 const About = () => {
   return (
     <div className="aboutContainer">
-      {/* About Heading */}
-      <motion.h1
-        className="aboutHeading"
-        initial={{ opacity: 0, y: -50 }} // Hidden and shifted up
-        whileInView={{ opacity: 1, y: 0 }} // Fade in and move into place
-        viewport={{ once: false }} // Animates each time it's in view
-        transition={{ duration: 0.6, ease: "easeOut" }} // Animation duration and easing
-      >
-        About me
-      </motion.h1>
+      <div className="aboutIntroContainer">
+        {/* Image with Animation */}
+        <motion.div
+          initial={{ x: -50, opacity: 0 }} // Start off-screen to the left
+          whileInView={{ x: 0, opacity: 1 }} // Slide in and fade in
+          viewport={{ once: false }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          className="aboutImageContainer"
+        >
+          <img src="./me.jpg" alt="About Me" className="aboutImage" />
+        </motion.div>
+        {/* About Heading with Animation */}
+        <motion.h1
+          className="aboutHeading"
+          initial={{ x: -50, opacity: 0 }} // Start off-screen to the left
+          whileInView={{ x: 0, opacity: 1 }} // Slide in and fade in
+          viewport={{ once: false }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }} // Slight delay for the heading
+        >
+          About me
+        </motion.h1>
+      </div>
 
       {/* Vertical Line Animation */}
       <motion.div

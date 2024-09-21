@@ -1,33 +1,35 @@
 .footer {
-  background-color: #111; /* Dark background for the card */
-  border-top: 2px solid rgb(179, 2, 134); /* Pinkish purple border */
-  color: #f5f5f5; /* Light text color */
-  padding: 20px; // Add padding around the content
-  width: 100%; // Full width
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); // Enhanced shadow for better visibility
-  backdrop-filter: blur(10px); // Optional: add a blur effect to the background
-  bottom: 0; // Position it at the bottom
-  left: 0; // Align it to the left
+  background-color: #111; /* Dark background for the footer */
+  border-top: 2px solid rgb(179, 2, 134); /* Pinkish purple border on the top */
+  color: #f5f5f5; /* Light text color for contrast */
+  padding: 20px; /* Add padding around the content */
+  width: 100%; /* Full width of the viewport */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow for better visibility */
+  backdrop-filter: blur(
+    10px
+  ); /* Optional: add a blur effect to the background */
+  bottom: 0; /* Position it at the bottom of the page */
+  left: 0; /* Align it to the left edge */
 }
 
 .footer-content {
-  display: flex; // Use flexbox for layout
-  flex-direction: column; // Arrange items in a column
-  font-size: 1rem; // Adjust font size if needed
-  margin: 0; // Remove default margin
-  padding: 0; // Remove default padding
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Arrange items in a column */
+  font-size: 1rem; /* Base font size for content */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Remove default padding */
 }
 
 .footer p {
-  margin: 5px 0; // Space out paragraphs slightly
+  margin: 5px 0; /* Space out paragraphs slightly for readability */
 }
 
 .footer-info {
-  display: flex; // Use flexbox for layout
-  gap: 10px; // Space between items
-  color: #d3d3d3; // Grayish color for text
+  display: flex; /* Use flexbox for layout */
+  gap: 10px; /* Space between items in the footer info section */
+  color: #d3d3d3; /* Grayish color for text to differentiate from main text */
 }
 
 .footer-info span {
-  color: #d3d3d3; // Grayish color for text
+  color: #d3d3d3; /* Consistent grayish color for text in footer info */
 }

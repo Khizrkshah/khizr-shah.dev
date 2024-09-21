@@ -1,46 +1,48 @@
 @import "../../App.scss";
 
 .infoContainer {
-  width: 90%;
-  text-align: center;
+  width: 90%; /* Sets the container width to 90% */
+  text-align: center; /* Centers text within the container */
   @include mobile {
-    width: 90%;
-    text-align: center;
-    padding-bottom: 65px;
+    width: 90%; /* Maintains the same width on mobile */
+    text-align: center; /* Keeps text centered on mobile */
+    padding-bottom: 65px; /* Adds bottom padding for spacing on mobile */
   }
 }
 
 .lineAnim {
-  margin: auto;
-  width: 50%;
+  margin: auto; /* Centers the element horizontally */
+  width: 50%; /* Sets the width to 50% of the parent */
 }
 
 .linkedin {
-  font-size: 30px;
-  color: rgb(179, 2, 134);
+  font-size: 30px; /* Sets font size for LinkedIn icon */
+  color: rgb(179, 2, 134); /* Sets color for LinkedIn icon */
 }
 
 .linkedin:hover {
-  font-size: 40px;
-  color: rgb(219, 0, 164);
+  font-size: 40px; /* Increases font size on hover */
+  color: rgb(219, 0, 164); /* Changes color on hover */
 }
 
 .github {
-  font-size: 30px;
-  color: rgb(179, 2, 134);
+  font-size: 30px; /* Sets font size for GitHub icon */
+  color: rgb(179, 2, 134); /* Sets color for GitHub icon */
 }
+
 .github:hover {
-  font-size: 40px;
-  color: rgb(219, 0, 164);
+  font-size: 40px; /* Increases font size on hover */
+  color: rgb(219, 0, 164); /* Changes color on hover */
 }
+
 .name {
-  color: rgb(235, 234, 234);
+  color: rgb(235, 234, 234); /* Sets color for the name text */
 }
 
 .info {
-  color: rgb(195, 193, 193);
+  color: rgb(195, 193, 193); /* Sets color for general info text */
 }
 
 .infotext {
-  color: rgb(195, 193, 193);
+  color: rgb(195, 193, 193); /* Sets color for additional info text */
 }

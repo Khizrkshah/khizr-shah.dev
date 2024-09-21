@@ -1,40 +1,87 @@
-@import "../../App.scss";
+@import "../../App.scss"; /* Import global styles */
 
+/* Container for the About section */
 .aboutContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 100vh;
+  display: flex; /* Use flexbox for layout */
+  flex-direction: row; /* Arrange children in a row */
+  justify-content: space-between; /* Distribute space between children */
+  align-items: center; /* Center items vertically */
+  height: 100vh; /* Full viewport height */
 }
 
-.aboutHeading {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  width: 32%;
-  text-align: center;
-  margin-right: -30px;
-  color: rgb(179, 2, 134);
+/* Container for introductory content */
+.aboutIntroContainer {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Arrange children in a column */
+  align-items: center; /* Center items horizontally */
+  margin-bottom: 20px; /* Space below the container */
+
   @include mobile {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    width: 32%;
-    text-align: center;
-    padding-right: 40%;
+    display: flex; /* Maintain flex display on mobile */
+    flex-direction: column; /* Arrange children in a column */
+    align-items: start; /* Align items to the start on mobile */
+    margin-bottom: 20px; /* Space below the container */
   }
 }
 
-.aboutContent {
-  font-size: 1rem;
-  width: 70%;
-  line-height: 1.6;
-  padding-left: 10px;
-  padding-right: 8px;
+/* Container for the profile image */
+.aboutImageContainer {
+  width: 150px; /* Fixed width for the image container */
+  height: 150px; /* Fixed height for the image container */
+  border: 2px solid rgb(179, 2, 134); /* Pinkish purple border */
+  border-radius: 50%; /* Circular border */
+  overflow: hidden; /* Hide overflow content */
+  display: flex; /* Use flexbox for centering */
+  justify-content: center; /* Center children horizontally */
+  align-items: center; /* Center children vertically */
+  margin-bottom: 20px; /* Space below the image container */
 
   @include mobile {
-    font-size: 0.6rem;
-    width: 100%;
-    line-height: 1.6;
-    padding-left: 8px;
+    width: 100px; /* Adjust width for mobile */
+    height: 100px; /* Adjust height for mobile */
+  }
+}
+
+/* Image styling */
+.aboutImage {
+  width: 100%; /* Full width of the container */
+  height: 100%; /* Full height of the container */
+  object-fit: cover; /* Cover the container while maintaining aspect ratio */
+  border-radius: 50%; /* Circular shape */
+}
+
+/* Styling for the About heading */
+.aboutHeading {
+  font-size: 2.5rem; /* Font size for the heading */
+  margin-bottom: 1rem; /* Space below the heading */
+  width: 32%; /* Fixed width for the heading */
+  text-align: center; /* Center align the text */
+  padding-left: 30px; /* Space on the left */
+  margin-right: 100px; /* Space on the right */
+  color: rgb(179, 2, 134); /* Pinkish purple text color */
+
+  @include mobile {
+    font-size: 2.5rem; /* Maintain font size on mobile */
+    margin-bottom: 1rem; /* Space below the heading */
+    width: 32%; /* Fixed width for the heading */
+    text-align: center; /* Center align the text */
+    padding-left: 0px; /* Remove left padding on mobile */
+    margin-right: -30px; /* Adjust right margin on mobile */
+    padding-right: 40%; /* Add right padding on mobile */
+  }
+}
+
+/* Content styling for the About section */
+.aboutContent {
+  font-size: 1rem; /* Font size for content */
+  width: 70%; /* Fixed width for content */
+  line-height: 1.6; /* Line height for readability */
+  padding-right: 8px; /* Space on the right */
+
+  @include mobile {
+    font-size: 0.6rem; /* Smaller font size for mobile */
+    width: 100%; /* Full width on mobile */
+    line-height: 1.6; /* Maintain line height */
+    padding-left: 8px; /* Space on the left for mobile */
   }
 }

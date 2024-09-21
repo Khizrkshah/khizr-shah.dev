@@ -5,12 +5,15 @@ import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { Tween, Group } from "@tweenjs/tween.js";
-
-import { useEffect, useRef } from "react";
+import "./touch-action.scss";
+import { useEffect } from "react";
 import getStarfield from "./Starfield.jsx";
 
 function ThreejsComponent() {
   useEffect(() => {
+    //Checking if running on mobile
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
     // Initialize scene and camera
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera(
@@ -37,14 +40,17 @@ function ThreejsComponent() {
     renderer.setPixelRatio(window.devicePixelRatio - 1); // Adjust for device pixel ratio
 
     // Handle window resize
-    window.addEventListener("resize", onWindowResize);
 
-    function onWindowResize() {
-      // Update camera and renderer on window resize
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      bloomComposer.setSize(window.innerWidth, window.innerHeight);
+    if (!isMobile) {
+      window.addEventListener("resize", onWindowResize);
+
+      function onWindowResize() {
+        // Update camera and renderer on window resize
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        bloomComposer.setSize(window.innerWidth, window.innerHeight);
+      }
     }
 
     // Initialize camera controls
@@ -375,7 +381,7 @@ function ThreejsComponent() {
   }, []);
 
   // Return a canvas element where the Three.js scene will be rendered
-  return <canvas id="canvasRef" />;
+  return <canvas id="canvasRef" className="touch-action" />;
 }
 
 // Export the ThreejsComponent to be used in other parts of the application

@@ -1,63 +1,67 @@
 html {
-  margin: 0;
-  padding: 0;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
-  height: 100%;
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
+  scroll-snap-type: y mandatory; /* Enables vertical scroll snapping */
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+  height: 100%; /* Sets height to 100% of the viewport */
 }
 
 * {
-  box-sizing: border-box;
-  font-family: "DM Sans", sans-serif;
+  box-sizing: border-box; /* Includes padding and border in element's total width and height */
+  font-family: "DM Sans", sans-serif; /* Sets font for all elements */
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  background-color: #000000;
-  color: #d7d7d7;
-  overflow-y: scroll;
+  margin: 0; /* Removes default margin */
+  padding: 0; /* Removes default padding */
+  min-height: 100vh; /* Ensures body is at least full viewport height */
+  background-color: #000000; /* Sets background color to black */
+  color: #d7d7d7; /* Sets default text color */
+  overflow-y: scroll; /* Allows vertical scrolling */
 }
 
 p {
-  margin-bottom: 1em;
+  margin-bottom: 1em; /* Adds space below paragraphs */
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+  text-decoration: none; /* Removes underline from links */
+  color: inherit; /* Inherits color from parent element */
 }
 a:hover {
-  size: 40px;
+  size: 40px; /* (Note: This property does not apply to hover state; consider using font-size instead) */
 }
 
 section {
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  position: inherit;
-  min-height: 100vh;
-  position: relative;
-  overflow: hidden;
+  width: 100vw; /* Full width of viewport */
+  display: flex; /* Enables flexbox layout for sections */
+  align-items: center; /* Centers items vertically */
+  scroll-snap-align: start; /* Aligns the start of the section with the viewport */
+  scroll-snap-stop: always; /* Ensures the section always snaps */
+  position: inherit; /* Inherits positioning context */
+  min-height: 100vh; /* Ensures section is at least full viewport height */
+  position: relative; /* Positions children relative to this element */
+  overflow: hidden; /* Hides overflow content */
 }
+
 .particleContainer {
-  height: 100vh;
-  width: 100vw;
+  position: relative; /* Allows absolute positioning of child elements */
+  height: 100vh; /* Full height of the viewport */
+  width: 100vw; /* Full width of the viewport */
+  display: flex; /* Enables flexbox layout for particle container */
 }
 
 .introduction {
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  bottom: 20px;
+  width: 100vw; /* Full width of viewport */
+  display: flex; /* Enables flexbox layout for introduction */
+  justify-content: center; /* Centers items horizontally */
+  position: absolute; /* Positions introduction absolutely within parent */
+  bottom: 20px; /* Positions 20px from the bottom */
 }
 
 @mixin mobile {
   @media (max-width: 599px) {
-    @content;
+    /* Media query for mobile devices */
+    @content; /* Placeholder for content to be included */
   }
 }

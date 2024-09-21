@@ -1,48 +1,48 @@
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #bf128e;
-  color: #000000;
-  z-index: 1;
-  clip-path: "circle(30px at 50px 50px)";
+  display: flex; /* Enables flexbox layout for sidebar */
+  flex-direction: column; /* Stacks child elements vertically */
+  align-items: center; /* Centers items horizontally */
+  justify-content: center; /* Centers items vertically */
+  background-color: #bf128e; /* Background color for sidebar */
+  color: #000000; /* Text color */
+  z-index: 1; /* Ensures sidebar is on top of other elements */
+  clip-path: "circle(30px at 50px 50px)"; /* Creates a circular clip path effect */
 
   .bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 400px;
-    background: rgb(179, 2, 134);
-    z-index: 1;
+    position: fixed; /* Fixes background to the viewport */
+    top: 0; /* Aligns to the top */
+    left: 0; /* Aligns to the left */
+    bottom: 0; /* Stretches to the bottom */
+    width: 400px; /* Fixed width for background */
+    background: rgb(179, 2, 134); /* Background color for sidebar */
+    z-index: 1; /* Ensures background is below sidebar elements */
 
     .links {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
+      position: absolute; /* Positions links absolutely within the background */
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      display: flex; /* Enables flexbox layout for links */
+      flex-direction: column; /* Stacks links vertically */
+      align-items: center; /* Centers links horizontally */
+      justify-content: center; /* Centers links vertically */
+      gap: 20px; /* Adds space between links */
 
       a {
-        font-size: 40px;
+        font-size: 40px; /* Sets font size for links */
       }
     }
   }
 
   button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    position: fixed;
-    top: 25px;
-    left: 25px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 1;
+    width: 50px; /* Fixed width for button */
+    height: 50px; /* Fixed height for button */
+    border-radius: 50%; /* Rounds the button to make it circular */
+    position: fixed; /* Fixes button in viewport */
+    top: 25px; /* Distance from the top */
+    left: 25px; /* Distance from the left */
+    background-color: transparent; /* Makes button background transparent */
+    border: none; /* Removes border */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    z-index: 1; /* Ensures button is above other elements */
   }
 }

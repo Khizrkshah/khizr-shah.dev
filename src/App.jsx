@@ -38,7 +38,7 @@ function App() {
             display: "flex",
             flexDirection: "column",
             minHeight: "100vh",
-            justifyContent: "end", // Aligns Footer to the bottom
+            justifyContent: "end",
           }}
         >
           <ContactMe /> {/* Contact form section */}
