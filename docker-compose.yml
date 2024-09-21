@@ -1,8 +1,0 @@
-services:
-  portfolio:
-    build:
-      context: .
-    ports:
-      - "80:80" # For HTTP
-      - "443:443" # For HTTPS
-
