@@ -24,6 +24,7 @@ const ContactMe = () => {
 
     try {
       // Send the form data to the specified email API endpoint
+      setSuccessMessage("Please Wait...");
       const response = await fetch(
         "https://portfolio-site.khizrkshah-a83.workers.dev/send-email",
         {
