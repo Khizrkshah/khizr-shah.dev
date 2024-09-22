@@ -37,7 +37,7 @@ function ThreejsComponent() {
 
     renderer.setSize(window.innerWidth, window.innerHeight); // Set renderer size
     renderer.setClearColor(0xffffff, 0); // Set background color
-    renderer.setPixelRatio(window.devicePixelRatio - 1); // Adjust for device pixel ratio
+    renderer.setPixelRatio(window.devicePixelRatio); // Adjust for device pixel ratio
 
     // Handle window resize
 
