@@ -29,6 +29,7 @@ function ThreejsComponent() {
 
     // Get canvas element and create renderer
     const canvas = document.getElementById("canvasRef");
+
     var renderer = new THREE.WebGLRenderer({
       canvas,
       antialias: true, // Smooth edges
@@ -37,7 +38,7 @@ function ThreejsComponent() {
 
     renderer.setSize(window.innerWidth, window.innerHeight); // Set renderer size
     renderer.setClearColor(0xffffff, 0); // Set background color
-    renderer.setPixelRatio(window.devicePixelRatio); // Adjust for device pixel ratio
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Adjust for device pixel ratio
 
     // Handle window resize
 
